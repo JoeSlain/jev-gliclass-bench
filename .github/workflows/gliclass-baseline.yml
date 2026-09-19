@@ -1,0 +1,42 @@
+name: gliclass-baseline
+
+# Reproducible GLiClass-only path (no API key). Jev requires a secret and is skipped here.
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "src/**"
+      - "pyproject.toml"
+      - ".github/workflows/gliclass-baseline.yml"
+
+jobs:
+  gliclass:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install
+        run: |
+          python -m pip install -U pip
+          pip install -e .
+          pip install "gliclass @ git+https://github.com/Knowledgator/GLiClass.git"
+      - name: Run GLiClass + gold (n=10 smoke)
+        env:
+          TOKENIZERS_PARALLELISM: "false"
+        run: |
+          python -m bench.cli \
+            --models gold,gliclass \
+            --workflow customer_service \
+            --split test \
+            --limit 10 \
+            --jsonl \
+            --out results/ci_gliclass_n10
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: gliclass-n10
+          path: results/ci_gliclass_n10/

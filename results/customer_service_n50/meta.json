@@ -1,0 +1,17 @@
+{
+  "python": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+  "platform": "macOS-26.3-arm64-arm-64bit-Mach-O",
+  "machine": "arm64",
+  "processor": "arm",
+  "workflow": "customer_service",
+  "split": "test",
+  "limit": 50,
+  "packages": {
+    "typesafe-sdk": "0.7.0",
+    "transformers": "5.17.0",
+    "torch": "2.14.0",
+    "datasets": "5.0.1",
+    "gliclass": "0.1.20",
+    "numpy": "2.5.3"
+  }
+}

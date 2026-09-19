@@ -1,0 +1,157 @@
+{
+  "workflow": "customer_service",
+  "split": "test",
+  "limit": 50,
+  "n_rows": 50,
+  "mode": "generalist_zeroshot",
+  "models": {
+    "jev": {
+      "n_rows": 50,
+      "n_errors": 0,
+      "accuracy": 0.788,
+      "log_loss": 2.507581589911523,
+      "brier": 0.11385782152664627,
+      "ece": 0.05524000000000004,
+      "wall_ms_mean": 281.25092007983767,
+      "wall_ms_p50": 268.04210399950534,
+      "wall_ms_p95": 342.73233315061583,
+      "per_question": {
+        "action": {
+          "n": 50,
+          "accuracy": 0.62,
+          "log_loss": 1.9368516707700518,
+          "brier": 0.12005603477540623,
+          "latency_ms_mean": 56.250184015967534
+        },
+        "category": {
+          "n": 50,
+          "accuracy": 0.92,
+          "log_loss": 1.943893579095599,
+          "brier": 0.06451895835416903,
+          "latency_ms_mean": 56.250184015967534
+        },
+        "churn_risk": {
+          "n": 50,
+          "accuracy": 0.88,
+          "log_loss": 4.837607714204609,
+          "brier": 0.17303638852776593,
+          "latency_ms_mean": 56.250184015967534
+        },
+        "needs_human": {
+          "n": 50,
+          "accuracy": 0.66,
+          "log_loss": 0.6595195934419524,
+          "brier": 0.09061416391124,
+          "latency_ms_mean": 56.250184015967534
+        },
+        "urgency": {
+          "n": 50,
+          "accuracy": 0.86,
+          "log_loss": 3.1600353920454016,
+          "brier": 0.12106356206465012,
+          "latency_ms_mean": 56.250184015967534
+        }
+      }
+    },
+    "gliclass": {
+      "n_rows": 50,
+      "n_errors": 0,
+      "accuracy": 0.412,
+      "log_loss": 16.656473041153696,
+      "brier": 0.7707431054064211,
+      "ece": 0.5880000000000001,
+      "wall_ms_mean": 604.4846091200452,
+      "wall_ms_p50": 552.18708350003,
+      "wall_ms_p95": 1012.5318484005217,
+      "per_question": {
+        "action": {
+          "n": 50,
+          "accuracy": 0.3,
+          "log_loss": 19.75802170728863,
+          "brier": 0.881031895973834,
+          "latency_ms_mean": 146.53333589987596
+        },
+        "category": {
+          "n": 50,
+          "accuracy": 0.52,
+          "log_loss": 13.274571820146075,
+          "brier": 0.7636896333091805,
+          "latency_ms_mean": 118.1033758000558
+        },
+        "churn_risk": {
+          "n": 50,
+          "accuracy": 0.48,
+          "log_loss": 16.77939706915808,
+          "brier": 0.6838790546597874,
+          "latency_ms_mean": 115.48324247996788
+        },
+        "needs_human": {
+          "n": 50,
+          "accuracy": 0.38,
+          "log_loss": 15.828889673830618,
+          "brier": 0.7671167935112401,
+          "latency_ms_mean": 110.40854663999198
+        },
+        "urgency": {
+          "n": 50,
+          "accuracy": 0.38,
+          "log_loss": 17.641484935345094,
+          "brier": 0.757998149578064,
+          "latency_ms_mean": 113.86232828019274
+        }
+      }
+    },
+    "gold": {
+      "n_rows": 50,
+      "n_errors": 0,
+      "accuracy": 1.0,
+      "log_loss": 0.758875566183876,
+      "brier": 0.0,
+      "ece": 0.4261090799999999,
+      "wall_ms_mean": 0.006909220064699184,
+      "wall_ms_p50": 0.004854000508203171,
+      "wall_ms_p95": 0.010247950285702242,
+      "per_question": {
+        "action": {
+          "n": 50,
+          "accuracy": 1.0,
+          "log_loss": 0.9978603269784658,
+          "brier": 0.0,
+          "latency_ms_mean": 0.0
+        },
+        "category": {
+          "n": 50,
+          "accuracy": 1.0,
+          "log_loss": 0.3904658797901321,
+          "brier": 0.0,
+          "latency_ms_mean": 0.0
+        },
+        "churn_risk": {
+          "n": 50,
+          "accuracy": 1.0,
+          "log_loss": 0.9370960824825157,
+          "brier": 0.0,
+          "latency_ms_mean": 0.0
+        },
+        "needs_human": {
+          "n": 50,
+          "accuracy": 1.0,
+          "log_loss": 0.5623498334792761,
+          "brier": 0.0,
+          "latency_ms_mean": 0.0
+        },
+        "urgency": {
+          "n": 50,
+          "accuracy": 1.0,
+          "log_loss": 0.9066057081889899,
+          "brier": 0.0,
+          "latency_ms_mean": 0.0
+        }
+      }
+    }
+  },
+  "env": {
+    "jev_model": "jev-latest",
+    "gliclass_model": "knowledgator/gliclass-base-v3.0"
+  }
+}
