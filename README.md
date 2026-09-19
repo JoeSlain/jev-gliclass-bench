@@ -30,7 +30,7 @@ Anyone can reproduce **gold** and **GLiClass** without secrets. **Jev** needs
 your own TypeSafe API key (never commit it).
 
 ```bash
-git clone https://github.com/<owner>/jev-gliclass-bench.git
+git clone https://github.com/JoeSlain/jev-gliclass-bench.git
 cd jev-gliclass-bench
 python3.12 -m venv .venv && source .venv/bin/activate
 pip install -e .
