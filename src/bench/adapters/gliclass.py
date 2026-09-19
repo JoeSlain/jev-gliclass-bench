@@ -24,7 +24,7 @@ def _choice_labels(criteria: dict[str, str] | list[str] | None) -> list[str]:
 
 
 def _label_prompt(q: QuestionSpec, label: str) -> str:
-    """Enrich bare labels with criteria text — dataset requires descriptions."""
+    """Enrich bare labels with criteria text (dataset requires descriptions)."""
     if q.criteria is None:
         return label
     if isinstance(q.criteria, list):
@@ -41,7 +41,7 @@ def _label_prompt(q: QuestionSpec, label: str) -> str:
 
 
 class GLiClassModel:
-    """Knowledgator GLiClass — one forward pass per question (local)."""
+    """Knowledgator GLiClass  -  one forward pass per question (local)."""
 
     name = "gliclass"
 
@@ -120,7 +120,7 @@ class GLiClassModel:
             labels = ["true", "false"]
             prompts = [
                 f"true: {q.instructions}",
-                f"false: NOT — {q.instructions}",
+                f"false: not the case that: {q.instructions}",
             ]
         elif q.type in ("choice", "score"):
             labels = _choice_labels(q.criteria)

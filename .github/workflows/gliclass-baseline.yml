@@ -24,7 +24,7 @@ jobs:
           python -m pip install -U pip
           pip install -e .
           pip install "gliclass @ git+https://github.com/Knowledgator/GLiClass.git"
-      - name: Run GLiClass + gold (n=10 smoke)
+      - name: Run GLiClass + gold (n=10 seeded smoke)
         env:
           TOKENIZERS_PARALLELISM: "false"
         run: |
@@ -33,6 +33,8 @@ jobs:
             --workflow customer_service \
             --split test \
             --limit 10 \
+            --seed 0 \
+            --shuffle \
             --jsonl \
             --out results/ci_gliclass_n10
       - name: Upload artifacts

@@ -80,7 +80,7 @@ class JevModel:
                 model=self._model,
             )
             wall_ms = (time.perf_counter() - t0) * 1000
-        except Exception as exc:  # noqa: BLE001 — surface in report
+        except Exception as exc:  # noqa: BLE001  -  surface in report
             return RowPrediction(
                 row_id=row_id,
                 workflow=workflow,

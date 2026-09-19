@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="420" viewBox="0 0 920 420" role="img" aria-labelledby="title desc">
+  <title id="title">Per-question accuracy</title>
+  <desc id="desc">Grouped bars for five questions comparing Jev and GLiClass.</desc>
+  <defs>
+    <style>
+      .bg { fill: #ffffff; }
+      .card { fill: #f6f8fa; stroke: #d0d7de; }
+      .title { fill: #1f2328; font: 700 22px -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif; }
+      .sub { fill: #656d76; font: 400 13px -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif; }
+      .tick { fill: #656d76; font: 500 12px -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif; }
+      .q { fill: #1f2328; font: 600 12px -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif; }
+      .legend { fill: #1f2328; font: 600 12px -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif; }
+      .grid { stroke: #d0d7de; stroke-width: 1; }
+      .jev { fill: #1a7f37; }
+      .gli { fill: #cf222e; }
+      @media (prefers-color-scheme: dark) {
+        .bg { fill: #0d1117; }
+        .card { fill: #161b22; stroke: #30363d; }
+        .title, .q, .legend { fill: #e6edf3; }
+        .sub, .tick { fill: #8b949e; }
+        .grid { stroke: #30363d; }
+        .jev { fill: #3fb950; }
+        .gli { fill: #f85149; }
+      }
+    </style>
+  </defs>
+  <rect class="bg" width="920" height="420" rx="12"/>
+  <rect class="card" x="24" y="24" width="872" height="372" rx="10"/>
+  <text class="title" x="48" y="64">Per-question accuracy</text>
+  <text class="sub" x="48" y="88">Same 100 tickets · five decisions each</text>
+
+  <rect class="jev" x="700" y="52" width="14" height="14" rx="2"/>
+  <text class="legend" x="720" y="64">Jev</text>
+  <rect class="gli" x="770" y="52" width="14" height="14" rx="2"/>
+  <text class="legend" x="790" y="64">GLiClass</text>
+
+  <!-- chart area: y=110..340, height 230 = 100% -->
+  <line class="grid" x1="80" y1="340" x2="860" y2="340"/>
+  <line class="grid" x1="80" y1="225" x2="860" y2="225"/>
+  <line class="grid" x1="80" y1="110" x2="860" y2="110"/>
+  <text class="tick" x="70" y="344" text-anchor="end">0%</text>
+  <text class="tick" x="70" y="229" text-anchor="end">50%</text>
+  <text class="tick" x="70" y="114" text-anchor="end">100%</text>
+
+  <!-- groups at x centers: 160, 310, 460, 610, 760 -->
+  <!-- bar width 28, gap 8 between pair -->
+  <!-- height = acc * 230, y = 340 - h -->
+
+  <!-- action 0.64 / 0.24 -->
+  <rect class="jev" x="132" y="192.8" width="28" height="147.2" rx="4"/>
+  <rect class="gli" x="168" y="284.8" width="28" height="55.2" rx="4"/>
+  <text class="q" x="164" y="362" text-anchor="middle">action</text>
+
+  <!-- category 0.93 / 0.49 -->
+  <rect class="jev" x="282" y="126.1" width="28" height="213.9" rx="4"/>
+  <rect class="gli" x="318" y="227.3" width="28" height="112.7" rx="4"/>
+  <text class="q" x="314" y="362" text-anchor="middle">category</text>
+
+  <!-- churn_risk 0.87 / 0.47 -->
+  <rect class="jev" x="432" y="139.9" width="28" height="200.1" rx="4"/>
+  <rect class="gli" x="468" y="231.9" width="28" height="108.1" rx="4"/>
+  <text class="q" x="464" y="362" text-anchor="middle">churn_risk</text>
+
+  <!-- needs_human 0.63 / 0.33 -->
+  <rect class="jev" x="582" y="195.1" width="28" height="144.9" rx="4"/>
+  <rect class="gli" x="618" y="264.1" width="28" height="75.9" rx="4"/>
+  <text class="q" x="614" y="362" text-anchor="middle">needs_human</text>
+
+  <!-- urgency 0.83 / 0.45 -->
+  <rect class="jev" x="732" y="149.1" width="28" height="190.9" rx="4"/>
+  <rect class="gli" x="768" y="236.5" width="28" height="103.5" rx="4"/>
+  <text class="q" x="764" y="362" text-anchor="middle">urgency</text>
+</svg>

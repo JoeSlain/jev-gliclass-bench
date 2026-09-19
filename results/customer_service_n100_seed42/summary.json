@@ -1,0 +1,407 @@
+{
+  "workflow": "customer_service",
+  "split": "test",
+  "limit": 100,
+  "n_rows": 100,
+  "mode": "generalist_zeroshot",
+  "framing": "product_joint: Jev answers all questions in one typed system_one call; GLiClass runs one independent zero-shot pass per question (noul/score flattened to label prompts). Fair as a product bakeoff; not a pure classifier duel.",
+  "sampling": {
+    "n_total": 100,
+    "n_sampled": 100,
+    "seed": 42,
+    "shuffle": true,
+    "indices": [
+      59,
+      21,
+      56,
+      18,
+      33,
+      42,
+      50,
+      27,
+      92,
+      71,
+      2,
+      25,
+      24,
+      52,
+      81,
+      99,
+      51,
+      61,
+      4,
+      97,
+      94,
+      37,
+      28,
+      80,
+      7,
+      57,
+      79,
+      26,
+      76,
+      78,
+      38,
+      0,
+      86,
+      46,
+      10,
+      29,
+      70,
+      45,
+      17,
+      39,
+      91,
+      40,
+      89,
+      5,
+      68,
+      1,
+      95,
+      84,
+      63,
+      3,
+      83,
+      93,
+      20,
+      87,
+      43,
+      73,
+      32,
+      75,
+      23,
+      96,
+      69,
+      15,
+      48,
+      55,
+      60,
+      9,
+      62,
+      31,
+      72,
+      16,
+      44,
+      82,
+      67,
+      34,
+      30,
+      58,
+      74,
+      88,
+      98,
+      54,
+      49,
+      6,
+      90,
+      11,
+      85,
+      41,
+      22,
+      19,
+      35,
+      64,
+      47,
+      12,
+      53,
+      14,
+      13,
+      66,
+      36,
+      65,
+      77,
+      8
+    ],
+    "sampling": "seeded_shuffle"
+  },
+  "baselines": {
+    "majority": {
+      "accuracy_micro": 0.492,
+      "accuracy_macro": 0.492,
+      "modes": {
+        "action": "escalate_to_human",
+        "category": "billing",
+        "churn_risk": "2",
+        "needs_human": "true",
+        "urgency": "3"
+      },
+      "per_question": {
+        "action": 0.52,
+        "category": 0.38,
+        "churn_risk": 0.47,
+        "needs_human": 0.67,
+        "urgency": 0.42
+      }
+    },
+    "dataset_card_floors_customer_service": {
+      "majority": 0.52,
+      "strong": 0.7,
+      "teacher_self_agreement": 0.75,
+      "note": "Floors from dataset card; only apply to customer_service"
+    }
+  },
+  "label_note": "Accuracy is teacher-label agreement (soft gold), not human ground truth. If Jev is distributionally close to the teacher stack, scores can partly reflect kinship.",
+  "models": {
+    "jev": {
+      "n_rows": 100,
+      "n_scored_rows": 100,
+      "n_errors": 0,
+      "accuracy": 0.78,
+      "accuracy_micro": 0.78,
+      "accuracy_macro": 0.78,
+      "accuracy_ci95": {
+        "low": 0.746,
+        "high": 0.816
+      },
+      "accuracy_row_ci95": {
+        "low": 0.7419999999999999,
+        "high": 0.8159999999999998
+      },
+      "log_loss": 2.4462169610301214,
+      "brier": 0.11224532346332017,
+      "ece_maxprob": 0.026619999999999953,
+      "ece": 0.026619999999999953,
+      "ece_note": "ece_maxprob bins max(p) vs hard correctness across mixed question types; prefer log_loss / brier for calibration",
+      "latency_note": "wall_ms is per-row wall time. Jev is remote API; GLiClass is local. Per-question latency_ms for Jev is wall/n_questions (shared).",
+      "wall_ms_mean": 288.2863424299103,
+      "wall_ms_p50": 276.97954199993546,
+      "wall_ms_p95": 369.4198868496642,
+      "per_question": {
+        "action": {
+          "n": 100,
+          "accuracy": 0.64,
+          "accuracy_ci95": {
+            "low": 0.55,
+            "high": 0.74
+          },
+          "log_loss": 1.8603832492932326,
+          "brier": 0.12103377049834257,
+          "latency_ms_mean": 57.65726848598206
+        },
+        "category": {
+          "n": 100,
+          "accuracy": 0.93,
+          "accuracy_ci95": {
+            "low": 0.88,
+            "high": 0.97
+          },
+          "log_loss": 1.9475877065870302,
+          "brier": 0.07047958841968698,
+          "latency_ms_mean": 57.65726848598206
+        },
+        "churn_risk": {
+          "n": 100,
+          "accuracy": 0.87,
+          "accuracy_ci95": {
+            "low": 0.8,
+            "high": 0.93
+          },
+          "log_loss": 4.795522994915792,
+          "brier": 0.17216949844066265,
+          "latency_ms_mean": 57.65726848598206
+        },
+        "needs_human": {
+          "n": 100,
+          "accuracy": 0.63,
+          "accuracy_ci95": {
+            "low": 0.54,
+            "high": 0.73
+          },
+          "log_loss": 0.6494662142023926,
+          "brier": 0.09009443248902002,
+          "latency_ms_mean": 57.65726848598206
+        },
+        "urgency": {
+          "n": 100,
+          "accuracy": 0.83,
+          "accuracy_ci95": {
+            "low": 0.75,
+            "high": 0.9
+          },
+          "log_loss": 2.978124640152162,
+          "brier": 0.10744932746888859,
+          "latency_ms_mean": 57.65726848598206
+        }
+      }
+    },
+    "gliclass": {
+      "n_rows": 100,
+      "n_scored_rows": 100,
+      "n_errors": 0,
+      "accuracy": 0.396,
+      "accuracy_micro": 0.396,
+      "accuracy_macro": 0.396,
+      "accuracy_ci95": {
+        "low": 0.354,
+        "high": 0.44004999999999994
+      },
+      "accuracy_row_ci95": {
+        "low": 0.3620000000000001,
+        "high": 0.43
+      },
+      "log_loss": 17.048756715451084,
+      "brier": 0.8115786043743501,
+      "ece_maxprob": 0.604,
+      "ece": 0.604,
+      "ece_note": "ece_maxprob bins max(p) vs hard correctness across mixed question types; prefer log_loss / brier for calibration",
+      "latency_note": "wall_ms is per-row wall time. Jev is remote API; GLiClass is local. Per-question latency_ms for Jev is wall/n_questions (shared).",
+      "wall_ms_mean": 526.4169616599975,
+      "wall_ms_p50": 496.1760834994493,
+      "wall_ms_p95": 792.8542276996268,
+      "per_question": {
+        "action": {
+          "n": 100,
+          "accuracy": 0.24,
+          "accuracy_ci95": {
+            "low": 0.16,
+            "high": 0.33
+          },
+          "log_loss": 20.62280195214409,
+          "brier": 0.9651108819802914,
+          "latency_ms_mean": 119.15655627997694
+        },
+        "category": {
+          "n": 100,
+          "accuracy": 0.49,
+          "accuracy_ci95": {
+            "low": 0.4,
+            "high": 0.58
+          },
+          "log_loss": 14.30581497635123,
+          "brier": 0.8254222663173514,
+          "latency_ms_mean": 102.73177536999356
+        },
+        "churn_risk": {
+          "n": 100,
+          "accuracy": 0.47,
+          "accuracy_ci95": {
+            "low": 0.37,
+            "high": 0.57
+          },
+          "log_loss": 17.148731683076004,
+          "brier": 0.7358295193500868,
+          "latency_ms_mean": 104.68379834983352
+        },
+        "needs_human": {
+          "n": 100,
+          "accuracy": 0.33,
+          "accuracy_ci95": {
+            "low": 0.24,
+            "high": 0.42024999999999973
+          },
+          "log_loss": 16.702030770024592,
+          "brier": 0.8402644336890199,
+          "latency_ms_mean": 100.85646914996687
+        },
+        "urgency": {
+          "n": 100,
+          "accuracy": 0.45,
+          "accuracy_ci95": {
+            "low": 0.35,
+            "high": 0.54
+          },
+          "log_loss": 16.464404195659508,
+          "brier": 0.691265920535001,
+          "latency_ms_mean": 98.90211458998238
+        }
+      }
+    },
+    "gold": {
+      "n_rows": 100,
+      "n_scored_rows": 100,
+      "n_errors": 0,
+      "accuracy": 1.0,
+      "accuracy_micro": 1.0,
+      "accuracy_macro": 1.0,
+      "accuracy_ci95": {
+        "low": 1.0,
+        "high": 1.0
+      },
+      "accuracy_row_ci95": {
+        "low": 1.0,
+        "high": 1.0
+      },
+      "log_loss": 0.7371546380094828,
+      "brier": 0.0,
+      "ece_maxprob": 0.412938268,
+      "ece": 0.412938268,
+      "ece_note": "ece_maxprob bins max(p) vs hard correctness across mixed question types; prefer log_loss / brier for calibration",
+      "latency_note": "wall_ms is per-row wall time. Jev is remote API; GLiClass is local. Per-question latency_ms for Jev is wall/n_questions (shared).",
+      "wall_ms_mean": 0.005781680101790698,
+      "wall_ms_p50": 0.00541700137546286,
+      "wall_ms_p95": 0.007355949401244287,
+      "per_question": {
+        "action": {
+          "n": 100,
+          "accuracy": 1.0,
+          "accuracy_ci95": {
+            "low": 1.0,
+            "high": 1.0
+          },
+          "log_loss": 0.96585789596119,
+          "brier": 0.0,
+          "latency_ms_mean": 0.0
+        },
+        "category": {
+          "n": 100,
+          "accuracy": 1.0,
+          "accuracy_ci95": {
+            "low": 1.0,
+            "high": 1.0
+          },
+          "log_loss": 0.4104218829338428,
+          "brier": 0.0,
+          "latency_ms_mean": 0.0
+        },
+        "churn_risk": {
+          "n": 100,
+          "accuracy": 1.0,
+          "accuracy_ci95": {
+            "low": 1.0,
+            "high": 1.0
+          },
+          "log_loss": 0.8904185324358029,
+          "brier": 0.0,
+          "latency_ms_mean": 0.0
+        },
+        "needs_human": {
+          "n": 100,
+          "accuracy": 1.0,
+          "accuracy_ci95": {
+            "low": 1.0,
+            "high": 1.0
+          },
+          "log_loss": 0.5491124088290018,
+          "brier": 0.0,
+          "latency_ms_mean": 0.0
+        },
+        "urgency": {
+          "n": 100,
+          "accuracy": 1.0,
+          "accuracy_ci95": {
+            "low": 1.0,
+            "high": 1.0
+          },
+          "log_loss": 0.8699624698875768,
+          "brier": 0.0,
+          "latency_ms_mean": 0.0
+        }
+      }
+    }
+  },
+  "env": {
+    "jev_model": "jev-latest",
+    "gliclass_model": "knowledgator/gliclass-base-v3.0"
+  },
+  "paired": {
+    "comparison": "jev vs gliclass",
+    "metric": "per_cell_hard_accuracy",
+    "mcnemar": {
+      "n": 500,
+      "n01": 24,
+      "n10": 216,
+      "p_value": 8.321564075391076e-40
+    },
+    "note": "n10 = jev right / gliclass wrong; n01 = jev wrong / gliclass right. p_value is two-sided exact McNemar."
+  }
+}

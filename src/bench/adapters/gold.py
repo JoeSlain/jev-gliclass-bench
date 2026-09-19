@@ -8,7 +8,7 @@ from ..types import QuestionSpec, RowPrediction
 
 
 class GoldReplayModel:
-    """Replay gold distributions — validates metrics + parsing (no network)."""
+    """Replay gold distributions  -  validates metrics + parsing (no network)."""
 
     name = "gold"
 

@@ -1,0 +1,17 @@
+{
+  "date_utc": "2026-09-19T13:02:11.915659+00:00",
+  "host": "macOS-26.3-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7",
+  "workflow": "customer_service",
+  "split": "test",
+  "limit": 100,
+  "seed": 42,
+  "shuffle": true,
+  "sampling": "seeded_shuffle",
+  "models": [
+    "jev",
+    "gliclass",
+    "gold"
+  ],
+  "typesafe_api_key_set": true
+}

@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
-# Reproducible baseline: customer_service test split, first N rows.
-# Requires: python 3.12+, pip install -e ., then gliclass (see README).
+# Reproducible baseline: seeded shuffle sample on a workflow test split.
 # Jev needs TYPESAFE_API_KEY in the environment or .env (never commit .env).
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 
-LIMIT="${LIMIT:-50}"
+LIMIT="${LIMIT:-100}"
+SEED="${SEED:-42}"
 WORKFLOW="${WORKFLOW:-customer_service}"
 MODELS="${MODELS:-jev,gliclass,gold}"
-OUT="${OUT:-results/${WORKFLOW}_n${LIMIT}}"
+OUT="${OUT:-results/${WORKFLOW}_n${LIMIT}_seed${SEED}}"
 
 mkdir -p "$OUT"
 python -m bench.cli \
@@ -17,6 +17,8 @@ python -m bench.cli \
   --workflow "$WORKFLOW" \
   --split test \
   --limit "$LIMIT" \
+  --seed "$SEED" \
+  --shuffle \
   --jsonl \
   --out "$OUT"
 
